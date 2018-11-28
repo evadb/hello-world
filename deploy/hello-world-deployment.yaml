@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hello-world-web
+  name: hello-world-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-world-web
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: hello-world-web
+    spec:
+      containers:
+      - image: gcr.io/gcr-test-223818/hello-world
+        name: hello-world-web
+        resources: {}
+status: {}
