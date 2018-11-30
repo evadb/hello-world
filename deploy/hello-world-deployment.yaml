@@ -4,6 +4,7 @@ metadata:
   labels:
     app: hello-world-web
   name: hello-world-web
+  keel.sh/policy: always
 spec:
   replicas: 1
   selector:
