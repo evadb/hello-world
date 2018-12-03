@@ -3,8 +3,8 @@ kind: Deployment
 metadata:
   labels:
     app: hello-world-web
+    keel.sh/policy: major
   name: hello-world-web
-  keel.sh/policy: always
 spec:
   replicas: 1
   selector:
@@ -17,7 +17,7 @@ spec:
         app: hello-world-web
     spec:
       containers:
-      - image: gcr.io/gcr-test-223818/hello-world
+      - image: gcr.io/gcr-test-223818/hello-world:v1
         name: hello-world-web
         resources: {}
         
