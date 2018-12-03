@@ -3,7 +3,10 @@ kind: Deployment
 metadata:
   labels:
     app: hello-world-web
-    keel.sh/policy: major
+    keel.sh/policy: force
+    keel.sh/trigger: poll
+  annotations:
+    keel.sh/pollSchedule: "@every 10m"
   name: hello-world-web
 spec:
   replicas: 1
@@ -17,7 +20,7 @@ spec:
         app: hello-world-web
     spec:
       containers:
-      - image: gcr.io/gcr-test-223818/hello-world:v1
+      - image: gcr.io/gcr-test-223818/hello-world:latest
         name: hello-world-web
         resources: {}
         
