@@ -2,27 +2,27 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: hello-world-web
+    app: hello-world-web-keel
     keel.sh/policy: force
     keel.sh/trigger: poll
     keel.sh/match-tag: "true" 
   annotations:
     keel.sh/pollSchedule: "@every 10m"
-  name: hello-world-web
+  name: hello-world-web-keel
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: hello-world-web
+      app: hello-world-web-keel
   strategy: {}
   template:
     metadata:
       labels:
-        app: hello-world-web
+        app: hello-world-web-keel
     spec:
       containers:
       - image: gcr.io/gcr-test-223818/hello-world:latest
-        name: hello-world-web
+        name: hello-world-web-keel
         resources: {}
         
 status: {}
