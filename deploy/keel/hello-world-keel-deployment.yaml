@@ -3,7 +3,11 @@ kind: Deployment
 metadata:
   labels:
     app: hello-world-web
+    keel.sh/policy: force
+    keel.sh/trigger: poll
+    keel.sh/match-tag: "true" 
   annotations:
+    keel.sh/pollSchedule: "@every 10m"
   name: hello-world-web
 spec:
   replicas: 1
