@@ -19,7 +19,7 @@ spec:
         app: hello-world-web
     spec:
       containers:
-      - image: gcr.io/gcr-test-223818/hello-world:master-00b3c8c
+      - image: gcr.io/gcr-test-223818/hello-world:master-4fe6a9a
         name: hello-world-web
         resources: {}
 status: {}
