@@ -1,7 +1,0 @@
----
-# Source: keel/templates/00-namespace.yaml
-
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: "keel"
