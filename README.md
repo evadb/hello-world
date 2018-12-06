@@ -1,1 +1,1 @@
-A testing repo for kubernetes things
+A testing repo for kubernetes things 🦀🦀
