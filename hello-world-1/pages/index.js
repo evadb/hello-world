@@ -1,1 +1,1 @@
-export default () => <div>Hello World 1 - monorepo</div>
+export default () => <div>Hello World 1</div>
