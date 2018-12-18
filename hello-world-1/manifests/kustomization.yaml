@@ -1,0 +1,6 @@
+resources:
+- hello-world-1-deployment.yaml
+- hello-world-1-service.yaml
+
+
+
