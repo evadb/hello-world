@@ -14,7 +14,7 @@ steps:
 - name: 'gcr.io/$PROJECT_ID/kustomize'
   dir: 'hello-world-1/manifests'
   args:
-  - 'c'
+  - '-c'
   - |
     kustomize edit set imagetag gcr.io/$PROJECT_ID/hello-world-1:$BRANCH_NAME-$SHORT_SHA
 images:
