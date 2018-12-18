@@ -17,6 +17,10 @@ steps:
   - '-c'
   - |
     kustomize edit set imagetag gcr.io/$PROJECT_ID/hello-world-1:$BRANCH_NAME-$SHORT_SHA
+- name: gcr.io/cloud-builders/git
+  args: ['add', '.']
+- name: gcr.io/cloud-builders/git
+  args: ['commit', '-m', 'Update test']
 images:
   - 'gcr.io/$PROJECT_ID/hello-world-1:$BRANCH_NAME-$SHORT_SHA'
   - 'gcr.io/$PROJECT_ID/hello-world-1:latest'
