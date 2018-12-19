@@ -43,7 +43,7 @@ steps:
       git config user.name "Mr Pinchy"
       git add hello_world.txt
       git commit -m "test"
-      git push
+      git push -u origin master
     volumes:
     - name: 'ssh'
       path: /root/.ssh
