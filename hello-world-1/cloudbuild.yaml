@@ -36,7 +36,8 @@ steps:
 
   - name: 'gcr.io/cloud-builders/git'
     args:
-    - status
+    - add
+    - hello_world.txt
     volumes:
     - name: 'ssh'
       path: /root/.ssh
