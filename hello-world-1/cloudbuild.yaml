@@ -4,6 +4,8 @@ steps:
     args: ['cp', 'gs://secrets_bucket/id_rsa.enc', 'id_rsa.enc']
   - name: 'gcr.io/cloud-builders/gsutil'
     args: ['cp', 'gs://secrets_bucket/known_hosts', 'known_hosts']
+  - name: 'gcr.io/cloud-builders/gsutil'
+    args: ['cp', 'gs://secrets_bucket/known_hosts', 'hello_world.txt']
 # Decrypt key
   - name: 'gcr.io/cloud-builders/gcloud'
     args:
@@ -28,6 +30,13 @@ steps:
       IdentityFile /root/.ssh/id_rsa
       EOF
       mv known_hosts /root/.ssh/known_hosts
+    volumes:
+    - name: 'ssh'
+      path: /root/.ssh
+
+  - name: 'gcr.io/cloud-builders/git'
+    args:
+    - status
     volumes:
     - name: 'ssh'
       path: /root/.ssh
