@@ -1,10 +1,9 @@
 steps:
   - name: 'gcr.io/cloud-builders/gsutil'
-    args: [ "-m", "rsync", "gs://secrets_bucket/", "local-dir/" ]
+    args: ['cp', 'gs://secrets_bucket/id_rsa.enc', 'id_rsa.enc']
   - name: 'gcr.io/cloud-builders/gsutil'
     entrypoint: 'bash'
     args:
     - '-c'
     - |
-      cd local-dir
       ls
