@@ -1,12 +1,20 @@
 steps:
+# Fetch encrypted key from encrypted bucket
   - name: 'gcr.io/cloud-builders/gsutil'
-    args: ['cp', 'gs://secrets_bucket/id_rsa.enc', 'secrets/id_rsa.enc']
+    args: ['cp', 'gs://secrets_bucket/id_rsa.enc', 'id_rsa.enc']
   - name: 'gcr.io/cloud-builders/gsutil'
-    args: ['cp', 'gs://secrets_bucket/known_hosts', 'secrets/known_hosts']
-  - name: 'gcr.io/cloud-builders/gsutil'
-    entrypoint: 'bash'
+    args: ['cp', 'gs://secrets_bucket/known_hosts', 'known_hosts']
+# Decrypt key
+  - name: 'gcr.io/cloud-builders/gcloud'
     args:
-    - '-c'
-    - |
-      cd secrets
-      ls
+    - kms
+    - decrypt
+    - --ciphertext-file=id_rsa.enc
+    - --plaintext-file=/root/.ssh/id_rsa
+    - --location=global
+    - --keyring=test
+    - --key=github-key
+    volumes:
+    - name: 'ssh'
+      path: /root/.ssh
+  
