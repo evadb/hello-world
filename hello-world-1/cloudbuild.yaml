@@ -14,7 +14,5 @@ steps:
     - --location=global
     - --keyring=test
     - --key=github-key
-    volumes:
-    - name: 'ssh'
-      path: /root/.ssh
+
   
