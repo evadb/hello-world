@@ -1,9 +1,12 @@
 steps:
   - name: 'gcr.io/cloud-builders/gsutil'
-    args: ['cp', 'gs://secrets_bucket/', 'secrets/']
+    args: ['cp', 'gs://secrets_bucket/id_rsa.enc', 'secrets/id_rsa.enc']
+  - name: 'gcr.io/cloud-builders/gsutil'
+    args: ['cp', 'gs://secrets_bucket/known_hosts', 'secrets/known_hosts']
   - name: 'gcr.io/cloud-builders/gsutil'
     entrypoint: 'bash'
     args:
     - '-c'
     - |
+      cd secrets
       ls
