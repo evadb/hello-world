@@ -39,7 +39,7 @@ steps:
     args:
     - '-c'
     - |
-      git config --global user.name "Mr Pinchy"
+      git config user.name "Mr Pinchy"
       git config user.name
     volumes:
     - name: 'ssh'
