@@ -39,6 +39,7 @@ steps:
     args:
     - '-c'
     - |
+      git config user.email "1013971101724@cloudbuild.gserviceaccount.com"
       git config user.name "Mr Pinchy"
       git add hello_world.txt
       git commit -m "test"
