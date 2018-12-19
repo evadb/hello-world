@@ -40,7 +40,8 @@ steps:
     - '-c'
     - |
       git config user.name "Mr Pinchy"
-      git config user.name
+      git add hello_world.txt
+      git commit -m "test"
     volumes:
     - name: 'ssh'
       path: /root/.ssh
