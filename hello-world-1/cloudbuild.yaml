@@ -36,8 +36,10 @@ steps:
 
   - name: 'gcr.io/cloud-builders/git'
     args:
-    - add
-    - hello_world.txt
+    - '-c'
+    - |
+      git add hello_world.txt
+      git commit -m "test commit"
     volumes:
     - name: 'ssh'
       path: /root/.ssh
