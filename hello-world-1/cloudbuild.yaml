@@ -19,11 +19,13 @@ steps:
     volumes:
     - name: 'ssh'
       path: /root/.ssh
+# Set up github credentials
   - name: 'gcr.io/cloud-builders/git'
     entrypoint: 'bash'
     args:
     - '-c'
     - |
+      rm id_rsa.enc
       chmod 600 /root/.ssh/id_rsa
       cat <<EOF >/root/.ssh/config
       Hostname github.com
@@ -33,7 +35,7 @@ steps:
     volumes:
     - name: 'ssh'
       path: /root/.ssh
-
+# Set up github identity & commit changes
   - name: 'gcr.io/cloud-builders/git'
     entrypoint: 'bash'
     args:
@@ -41,16 +43,17 @@ steps:
     - |
       git config user.email "eva.demers-brett@cds-snc.ca"
       git config user.name "Mr Pinchy"
-      git add hello_world.txt
-      git commit -m "test"
+      git status
+      # git add hello_world.txt
+      # git commit -m "test"
     volumes:
     - name: 'ssh'
       path: /root/.ssh
-
-  - name: 'gcr.io/cloud-builders/git'
-    args:
-    - push
-    - git@github.com:evadb/hello-world
-    volumes:
-    - name: 'ssh'
-      path: /root/.ssh
+# Push changes back to master
+  # - name: 'gcr.io/cloud-builders/git'
+  #   args:
+  #   - push
+  #   - git@github.com:evadb/hello-world
+  #   volumes:
+  #   - name: 'ssh'
+  #     path: /root/.ssh
