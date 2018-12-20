@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-world-web-1
+spec:
+  ports:
+  - name: web
+    port: 5000
+    targetPort: 5000
+  selector:
+    app: hello-world-web-1
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hello-world-web-1
+  name: hello-world-web-1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-world-web-1
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: hello-world-web-1
+    spec:
+      containers:
+      - image: gcr.io/gcr-test-223818/hello-world-1:master-f10269e
+        name: hello-world-web-1
+        resources: {}
+status: {}
