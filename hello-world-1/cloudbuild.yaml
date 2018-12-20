@@ -57,6 +57,15 @@ steps:
   volumes:
   - name: 'ssh'
     path: /root/.ssh
+# Set up github identity & commit changes
+  - name: 'gcr.io/cloud-builders/git'
+    entrypoint: 'bash'
+    args:
+    - '-c'
+    - |
+      git config user.email "mr.pinchy@cds-snc.ca"
+      git config user.name "Mr Pinchy"
+      git status
 images:
   - 'gcr.io/$PROJECT_ID/hello-world-1:$BRANCH_NAME-$SHORT_SHA'
   - 'gcr.io/$PROJECT_ID/hello-world-1:latest'
