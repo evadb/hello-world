@@ -12,9 +12,9 @@ steps:
          '-t', 'gcr.io/$PROJECT_ID/hello-world-1:$BRANCH_NAME-$SHORT_SHA',
          '-t', 'gcr.io/$PROJECT_ID/hello-world-1:latest',
          '-f', 'Dockerfile', '.']
-  images:
-    - 'gcr.io/$PROJECT_ID/hello-world-1:$BRANCH_NAME-$SHORT_SHA'
-    - 'gcr.io/$PROJECT_ID/hello-world-1:latest'
+images:
+  - 'gcr.io/$PROJECT_ID/hello-world-1:$BRANCH_NAME-$SHORT_SHA'
+  - 'gcr.io/$PROJECT_ID/hello-world-1:latest'
 # Fetch encrypted key from encrypted bucket
   - name: 'gcr.io/cloud-builders/gsutil'
     args: ['cp', 'gs://secrets_bucket/id_rsa.enc', 'id_rsa.enc']
