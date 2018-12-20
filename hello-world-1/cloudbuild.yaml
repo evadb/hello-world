@@ -53,8 +53,4 @@ steps:
     volumes:
     - name: 'ssh'
       path: /root/.ssh
-  images:
-    - 'gcr.io/$PROJECT_ID/hello-world-1:$BRANCH_NAME-$SHORT_SHA'
-    - 'gcr.io/$PROJECT_ID/hello-world-1:latest'
-
   
