@@ -13,6 +13,13 @@ steps:
         '-t', 'gcr.io/$PROJECT_ID/hello-world-1:$BRANCH_NAME-$SHORT_SHA',
         '-t', 'gcr.io/$PROJECT_ID/hello-world-1:latest',
         '-f', 'Dockerfile', '.']
+- name: 'gcr.io/$PROJECT_ID/kustomize'
+  dir: 'hello-world-1/manifests'
+  args:
+  - '-c'
+  - |
+    kustomize edit set imagetag gcr.io/$PROJECT_ID/hello-world-1:$BRANCH_NAME-$SHORT_SHA
+    kustomize build . > deploy/deploy.yaml
 images:
   - 'gcr.io/$PROJECT_ID/hello-world-1:$BRANCH_NAME-$SHORT_SHA'
   - 'gcr.io/$PROJECT_ID/hello-world-1:latest'
