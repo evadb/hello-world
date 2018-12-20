@@ -6,6 +6,15 @@ steps:
   - name: 'gcr.io/cloud-builders/npm'
     dir: 'hello-world-1'
     args: ['run', 'test']
+  - name: 'gcr.io/cloud-builders/docker'
+    dir: 'hello-world-1'
+    args: ['build', 
+         '-t', 'gcr.io/$PROJECT_ID/hello-world-1:$BRANCH_NAME-$SHORT_SHA',
+         '-t', 'gcr.io/$PROJECT_ID/hello-world-1:latest',
+         '-f', 'Dockerfile', '.']
+  images:
+    - 'gcr.io/$PROJECT_ID/hello-world-1:$BRANCH_NAME-$SHORT_SHA'
+    - 'gcr.io/$PROJECT_ID/hello-world-1:latest'
 # Fetch encrypted key from encrypted bucket
   - name: 'gcr.io/cloud-builders/gsutil'
     args: ['cp', 'gs://secrets_bucket/id_rsa.enc', 'id_rsa.enc']
@@ -49,8 +58,6 @@ steps:
       git config user.email "eva.demers-brett@cds-snc.ca"
       git config user.name "Mr Pinchy"
       git status
-      # git add hello_world.txt
-      # git commit -m "test"
     volumes:
     - name: 'ssh'
       path: /root/.ssh
