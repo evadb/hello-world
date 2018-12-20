@@ -1,6 +1,3 @@
 resources:
 - hello-world-1-deployment.yaml
 - hello-world-1-service.yaml
-imageTags:
-- name: gcr.io/gcr-test-223818/hello-world-1
-  newTag: test

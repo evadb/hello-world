@@ -1,5 +1,6 @@
 steps:
-# Install & test
+# PART 1
+# Install, test & build image
 - name: 'gcr.io/cloud-builders/npm'
   dir: 'hello-world-1'
   args: ['install']
@@ -15,6 +16,17 @@ steps:
 images:
   - 'gcr.io/$PROJECT_ID/hello-world-1:$BRANCH_NAME-$SHORT_SHA'
   - 'gcr.io/$PROJECT_ID/hello-world-1:latest'
+# PART 2
+# Use Kustomize to update image tag
+# Build to create deployment file
+- name: 'gcr.io/$PROJECT_ID/kustomize'
+  dir: 'hello-world-1/manifests'
+  args:
+  - '-c'
+  - |
+    kustomize edit set imagetag gcr.io/$PROJECT_ID/hello-world-1:$BRANCH_NAME-$SHORT_SHA
+    kustomize build . > deploy/deploy.yaml
+
 # Fetch encrypted key from encrypted bucket
 #   - name: 'gcr.io/cloud-builders/gsutil'
 #     args: ['cp', 'gs://secrets_bucket/id_rsa.enc', 'id_rsa.enc']
