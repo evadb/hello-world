@@ -5,6 +5,7 @@ steps:
     args: ['install']
   - name: 'gcr.io/cloud-builders/npm'
     dir: 'hello-world-1'
+    args: ['run', 'test']
 # Fetch encrypted key from encrypted bucket
   - name: 'gcr.io/cloud-builders/gsutil'
     args: ['cp', 'gs://secrets_bucket/id_rsa.enc', 'id_rsa.enc']
