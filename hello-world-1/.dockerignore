@@ -1,6 +1,5 @@
 **
 !pages/
-!.env.example
 !package.json
 !yarn.lock
 !node_modules
